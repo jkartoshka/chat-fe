@@ -1,15 +1,9 @@
 import Message from '../Message/Message';
 import MessageInputBox from '../MessageInputBox/MessageInputBox';
 import { useState } from 'react';
+import { Box, Stack } from '@mui/material';
 
 const Chat = () => {
-  // chat_id
-  // chat_type (single, group)
-  // participant ids
-  // created_at
-  // updated_at
-  // last_message_id
-
   const [messages, setMessages] = useState([]);
 
   // Adding a new message
@@ -18,17 +12,21 @@ const Chat = () => {
   };
 
   return (
-    <>
-      <div className="chat-container">
+    <Box>
+      <Stack
+        direction="column"
+        spacing={2}
+        sx={{
+          justifyContent: 'flex-start',
+          alignItems: 'flex-end',
+        }}
+      >
         {messages.map((message, index) => (
-            <div key={index} className="message">
-            <Message content={message}/>
-          </div>
+          <Message message={message} key={index} />
         ))}
-        
-      </div>
-      <MessageInputBox addMessage={addMessage}/>
-    </>
+      </Stack>
+      <MessageInputBox addMessage={addMessage} />
+    </Box>
   );
 };
 

@@ -1,6 +1,7 @@
 import './Message.css';
+import { Paper, Typography } from '@mui/material';
 
-const Message = ({content, timestamp}) => {
+const Message = ({message}) => {
   // message_id
   // sender_id
   // chat_id
@@ -11,9 +12,23 @@ const Message = ({content, timestamp}) => {
 
   // Message status: message_id, user_id, is_read, reat_at
   return (
-    <div className="message-container">
-      <p>{content}</p>
-    </div>
+    <Paper 
+            // key={index}
+            sx={{
+              padding: '10px',
+              maxWidth: '70%',
+              backgroundColor: '#1976d2', 
+              borderRadius: '10px',
+              wordWrap: 'break-word'
+            }}
+          >
+            <Typography variant="body1" sx={{ color: 'white' }}>
+              {message.text}
+            </Typography>
+            <Typography variant="caption" sx={{ textAlign: 'right', display: 'block', marginTop: '5px', color: 'white' }}>
+              {message.timestamp}
+            </Typography>
+          </Paper>
   );
 };
 
