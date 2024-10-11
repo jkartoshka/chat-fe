@@ -1,19 +1,11 @@
-import './Message.css';
 import { Box, Menu, MenuItem, Paper, Typography } from '@mui/material';
 import { useState } from 'react';
+import User from '../User/User';
+import './Message.css';
 
-const Message = ({ currentUserId, message, key, deleteMessage }) => {
-  // message_id
-  // sender_id
-  // chat_id
-  // content
-  // timestamp
-  // is_read
-  // message_type
-
-  // Message status: message_id, user_id, is_read, reat_at
-
+const Message = ({ currentUserId, chatTitle, message, deleteMessage }) => {
   const isMyMessage = message.userId === currentUserId;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,51 +21,62 @@ const Message = ({ currentUserId, message, key, deleteMessage }) => {
 
   return (
     <>
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: isMyMessage ? 'flex-end' : 'flex-start', // Align messages based on ownership
-        margin: '10px 0',
-      }}
-    >
-      <Paper
-        key={key}
+      <Box
         sx={{
-          padding: '10px',
-          maxWidth: '70%',
-          backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1',
-          borderRadius: '10px',
-          wordWrap: 'break-word',
+          display: 'flex',
+          justifyContent: isMyMessage ? 'flex-end' : 'flex-start', // Align messages based on ownership
+          margin: '10px 0',
         }}
-        elevation={0}
-        onClick={handleClick}
       >
-        <Typography variant="body1" sx={{ color: isMyMessage ? 'white' : 'black' }}>
-          {message.text}
-        </Typography>
-        <Typography
-          variant="caption"
+        <Box sx={{paddingRight: '10px'}}>{!isMyMessage && <User chatTitle={chatTitle} />}</Box>
+        <Paper
           sx={{
-            textAlign: 'right',
-            display: 'block',
-            marginTop: '5px',
-            color: isMyMessage ? 'white' : 'black'
+            padding: '10px',
+            maxWidth: '70%',
+            backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1',
+            borderRadius: '10px',
+            wordWrap: 'break-word',
+          }}
+          elevation={0}
+          onClick={handleClick}
+        >
+          <Typography
+            variant="body1"
+            sx={{ color: isMyMessage ? 'white' : 'black' }}
+          >
+            {message.text}
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{
+              textAlign: 'right',
+              display: 'block',
+              marginTop: '5px',
+              color: isMyMessage ? 'white' : 'black',
+            }}
+          >
+            {message.timestamp
+              .toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+              .replace(/^0+/, '')}
+          </Typography>
+        </Paper>
+      </Box>
+      {isMyMessage && (
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
           }}
         >
-          {message.timestamp.replace(/^0+/, '')}
-        </Typography>
-      </Paper></Box>
-      {isMyMessage && <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem onClick={deleteMsg}>Delete</MenuItem>
-      </Menu>}
+          <MenuItem onClick={deleteMsg}>Delete</MenuItem>
+        </Menu>
+      )}
     </>
   );
 };

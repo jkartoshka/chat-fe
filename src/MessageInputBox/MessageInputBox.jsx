@@ -1,11 +1,10 @@
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import SendIcon from '@mui/icons-material/Send';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './MessageInputBox.css';
-import SendIcon from '@mui/icons-material/Send';
 
-const MessageInputBox = ({ addMessage, userId }) => {
+const MessageInputBox = ({ addMessage, userId, isNewChat, tags }) => {
   const [message, setMessage] = useState('');
 
   const handleInputChange = (event) => {
@@ -17,7 +16,7 @@ const MessageInputBox = ({ addMessage, userId }) => {
       userId: userId,
       messageId: uuidv4(), // Generate unique message ID
       text: message,             // Message content
-      timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}), // Current time
+      timestamp: new Date() // Current time
     };
     if (newMessage.text?.trim()) {
       addMessage(newMessage); // Pass the new message up to the parent component
@@ -49,6 +48,7 @@ const MessageInputBox = ({ addMessage, userId }) => {
                 edge="end"
                 color="primary"
                 onClick={handleSendMessage}
+                disabled={isNewChat && tags.length === 0}
               >
                 <SendIcon />
               </IconButton>
