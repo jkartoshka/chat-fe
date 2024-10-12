@@ -16,7 +16,7 @@ import {
     Typography
 } from '@mui/material';
 import React, { useState } from 'react';
-import User from '../User/User';
+import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatHeader.css';
 
 const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) => {
@@ -64,7 +64,7 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
       <Toolbar>
         {/* Avatar and Chat Title */}
         <Box display="flex" alignItems="center" flexGrow={1}>
-        {!isNewChat && <User chatTitle={chatTitle} />}
+        {!isNewChat && <UserAvatar chatTitle={chatTitle} />}
               <Box ml={2} sx={{ width: '100%' }}>
             {isNewChat ? (
               <>

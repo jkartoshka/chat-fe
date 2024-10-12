@@ -1,19 +1,10 @@
-import AddIcon from '@mui/icons-material/Add';
-import {
-  AppBar,
-  Box,
-  IconButton,
-  Stack,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { useEffect, useRef, useState } from 'react';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatList from '../ChatList/ChatList';
-import Message from '../Message/Message';
 import MessageInputBox from '../MessageInputBox/MessageInputBox';
+import MessageList from '../MessageList/MessageList';
 
 const Chat = () => {
   const userId = 123; // This could be dynamically set after login
@@ -59,7 +50,6 @@ const Chat = () => {
   const [selectedChat, setSelectedChat] = useState({ chatId: 0, name: 'You', messages: [] });
   const [tags, setTags] = useState([]); // Tags from header
   const [isNewChat, setIsNewChat] = useState(false);
-
   const [chatTitle, setChatTitle] = useState('You'); // Chat title from header
 
   const deleteChat = (deleteChat) => {
@@ -173,26 +163,9 @@ const Chat = () => {
           overflowY: 'auto',
         }}
       >
-        <AppBar
-          elevation={0}
-          position="static"
-          color="default"
-          sx={{ borderBottom: '1px solid #ddd' }}
-        >
-          <Toolbar sx={{ paddingRight: '10px !important' }}>
-            <Box display="flex" alignItems="center" flexGrow={1}>
-              <Typography sx={{ fontWeight: 'bold' }} variant="h6">
-                Chat
-              </Typography>
-            </Box>
-            <Tooltip title="New Chat">
-              <IconButton onClick={addChat} disabled={isNewChat}>
-                <AddIcon />
-              </IconButton>
-            </Tooltip>
-          </Toolbar>
-        </AppBar>
         <ChatList
+          addChat={addChat}
+          isNewChat={isNewChat}
           chats={chats}
           userId={userId}
           onChatSelect={selectChat}
@@ -214,7 +187,6 @@ const Chat = () => {
             <ChatHeader
               chat={selectedChat}
               chatTitle={chatTitle}
-              setChatTitle={setChatTitle}
               isNewChat={isNewChat}
               tags={tags}
               setTags={setTags}
@@ -222,49 +194,13 @@ const Chat = () => {
             />
 
             {/* Messages List */}
-            <Stack
-              direction="column"
-              spacing={2}
-              sx={{
-                flexGrow: 1,
-                overflowY: 'auto',
-                padding: '16px',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {selectedChat.messages.map((message, index) => {
-                const messageDate = message.timestamp.toDateString();
-
-                const showDate = lastMessageDate !== messageDate;
-                lastMessageDate = messageDate; // Update for the next message
-                return (
-                  <div>
-                    {showDate && (
-                      <Typography
-                        variant="body2"
-                        align="center"
-                        color="text.secondary"
-                      >
-                        {message.timestamp.toLocaleDateString([], {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </Typography>
-                    )}
-                    <Message
-                      chatTitle={selectedChat?.name}
-                      currentUserId={userId}
-                      message={message}
-                      key={index}
-                      deleteMessage={deleteMessage}
-                    />
-                    {/* This div will act as the scroll target */}
-                    <div ref={messagesEndRef} />
-                  </div>
-                );
-              })}
-            </Stack>
+            <MessageList 
+              selectedChat={selectedChat} 
+              userId={userId} 
+              deleteMessage={deleteMessage}
+              messagesEndRef={messagesEndRef}
+              lastMessageDate={lastMessageDate}
+              />
 
             {/* Message Input */}
             <Box sx={{ padding: '10px' }}>

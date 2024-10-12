@@ -7,28 +7,27 @@ import './MessageInputBox.css';
 const MessageInputBox = ({ addMessage, userId, isNewChat, tags }) => {
   const [message, setMessage] = useState('');
 
-  const handleInputChange = (event) => {
-    setMessage(event.target.value);
-  };
-
   const handleSendMessage = () => {
     const newMessage = {
       userId: userId,
       messageId: uuidv4(), // Generate unique message ID
-      text: message,             // Message content
-      timestamp: new Date() // Current time
+      text: message, // Message content
+      timestamp: new Date(), // Current time
     };
+
     if (newMessage.text?.trim()) {
       addMessage(newMessage); // Pass the new message up to the parent component
       setMessage(''); // Clear the input field
-     }
+    }
   };
 
-   // Function to handle "Enter" key press
-   const handleKeyPress = (event) => {
+  // Function to handle "Enter" key press
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      event.preventDefault(); // Prevents the default action (like form submit)
-      handleSendMessage(); // Call send message function
+      event.preventDefault();
+      if (!isNewChat || (isNewChat && tags.length)) {
+        handleSendMessage();
+      }
     }
   };
 
@@ -37,7 +36,9 @@ const MessageInputBox = ({ addMessage, userId, isNewChat, tags }) => {
       <TextField
         id="message-input"
         className="message-input-container"
-        onChange={handleInputChange}
+        onChange={(e) => {
+          setMessage(e.target.value);
+        }}
         onKeyPress={handleKeyPress}
         placeholder="Type a message"
         value={message}

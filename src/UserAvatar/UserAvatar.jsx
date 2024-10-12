@@ -35,8 +35,8 @@ function stringAvatar(name) {
   };
 }
 
-const User = ({ chatTitle }) => {
+const UserAvatar = ({ chatTitle }) => {
   return <Avatar {...stringAvatar(chatTitle)} />;
 };
 
-export default User;
+export default UserAvatar;
