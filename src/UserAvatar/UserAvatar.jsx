@@ -1,5 +1,6 @@
 import Avatar from '@mui/material/Avatar';
 import * as React from 'react';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 function stringToColor(string) {
   let hash = 0;
@@ -26,17 +27,17 @@ function stringToColor(string) {
   return color;
 }
 
-function stringAvatar(name) {
+function stringAvatar(name, isGroupChat) {
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: name == '' ? null : `${name?.split('')[0]?.[0]}`,
+    children: name == '' ? null : isGroupChat ? <GroupsIcon /> :`${name?.split('')[0]?.[0]}`,
   };
 }
 
-const UserAvatar = ({ chatTitle }) => {
-  return <Avatar {...stringAvatar(chatTitle)} />;
+const UserAvatar = ({ chatTitle, isGroupChat }) => {
+  return <Avatar {...stringAvatar(chatTitle, isGroupChat)} />;
 };
 
 export default UserAvatar;

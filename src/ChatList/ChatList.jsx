@@ -54,7 +54,7 @@ const ChatList = ({
               <Box display="flex" alignItems="center" width="100%">
                 {/* Avatar */}
                 <Box sx={{ minWidth: '40px', maxWidth: '40px' }}>
-                  <UserAvatar chatTitle={chat?.name} />
+                   {chat.name && <UserAvatar isGroupChat={chat.name.length > 1} chatTitle={chat?.name.join(', ')} />}
                 </Box>
 
                 {/* Chat Name and Last Message */}
@@ -75,7 +75,7 @@ const ChatList = ({
                             textOverflow: 'ellipsis',
                           }}
                         >
-                          {chat.name ? chat.name : 'New Chat'}
+                          {chat.name.length !== 0 ? chat.name.join(', '): 'New Chat'}
                         </span>
 
                         {/* Timestamp */}

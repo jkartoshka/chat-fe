@@ -1,9 +1,16 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, ListItemIcon, Menu, MenuItem, Paper, Typography } from '@mui/material';
+import {
+  Box,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Paper,
+  Typography,
+} from '@mui/material';
 import { useState } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 
-const Message = ({ currentUserId, chatTitle, message, deleteMessage }) => {
+const Message = ({ currentUserId, message, deleteMessage }) => {
   const isMyMessage = message.userId === currentUserId;
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -28,7 +35,9 @@ const Message = ({ currentUserId, chatTitle, message, deleteMessage }) => {
           margin: '10px 0',
         }}
       >
-        <Box sx={{paddingRight: '10px'}}>{!isMyMessage && <UserAvatar chatTitle={chatTitle} />}</Box>
+        <Box sx={{ paddingRight: '10px' }}>
+          {!isMyMessage && <UserAvatar chatTitle={message.userName} />}
+        </Box>
         <Paper
           sx={{
             padding: '10px',
@@ -75,10 +84,11 @@ const Message = ({ currentUserId, chatTitle, message, deleteMessage }) => {
           }}
         >
           <MenuItem onClick={deleteMsg}>
-          <ListItemIcon>
-                    <DeleteIcon fontSize="small" />
-                  </ListItemIcon>
-                  Delete</MenuItem>
+            <ListItemIcon>
+              <DeleteIcon fontSize="small" />
+            </ListItemIcon>
+            Delete
+          </MenuItem>
         </Menu>
       )}
     </>

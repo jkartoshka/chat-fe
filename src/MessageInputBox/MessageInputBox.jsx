@@ -10,6 +10,7 @@ const MessageInputBox = ({ addMessage, userId, isNewChat, tags }) => {
   const handleSendMessage = () => {
     const newMessage = {
       userId: userId,
+      userName: "You",
       messageId: uuidv4(), // Generate unique message ID
       text: message, // Message content
       timestamp: new Date(), // Current time

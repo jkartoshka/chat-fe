@@ -9,13 +9,14 @@ import MessageList from '../MessageList/MessageList';
 const Chat = () => {
   const userId = 123; // This could be dynamically set after login
   const [chats, setChats] = useState([
-    { chatId: 0, name: 'You', messages: [] },
+    { chatId: 0, name: ['You'], messages: [] },
     {
       chatId: 1,
-      name: 'Bob',
+      name: ['Lisa'],
       messages: [
         {
           userId: 124,
+          userName: 'Lisa',
           messageId: 'bobs-message',
           text: 'hey!',
           timestamp: new Date(),
@@ -24,10 +25,11 @@ const Chat = () => {
     },
     {
       chatId: 2,
-      name: 'Lisa',
+      name: ['Bob', 'Julia'],
       messages: [
         {
           userId: 124,
+          userName: 'Bob',
           messageId: 'lisas-message',
           text: 'Hey! I hope that you are well',
           timestamp: new Date(2024, 3, 8, 8, 8),
@@ -35,11 +37,12 @@ const Chat = () => {
         {
           userId: 123,
           messageId: 'my-message',
-          text: 'Im listening',
+          text: 'Whats up?',
           timestamp: new Date(2024, 3, 10, 8, 12),
         },
         {
-          userId: 124,
+          userId: 125,
+          userName: 'Julia',
           messageId: 'lisas-message-1',
           text: 'What are your plans for the weekend?',
           timestamp: new Date(2024, 3, 10, 8, 15),
@@ -47,7 +50,11 @@ const Chat = () => {
       ],
     },
   ]);
-  const [selectedChat, setSelectedChat] = useState({ chatId: 0, name: 'You', messages: [] });
+  const [selectedChat, setSelectedChat] = useState({
+    chatId: 0,
+    name: ['You'],
+    messages: [],
+  });
   const [tags, setTags] = useState([]); // Tags from header
   const [isNewChat, setIsNewChat] = useState(false);
   const [chatTitle, setChatTitle] = useState('You'); // Chat title from header
@@ -65,7 +72,7 @@ const Chat = () => {
       null;
 
     setSelectedChat(nextChat);
-    setChatTitle(nextChat.name);
+    setChatTitle(nextChat.name.join(', '));
   };
 
   const deleteMessage = (message) => {
@@ -87,41 +94,45 @@ const Chat = () => {
         prevChats.map((chat) =>
           chat.chatId === selectedChat.chatId
             ? { ...chat, name: newTitle, messages: [...chat.messages, message] } // Update the chat name and add new message
-            : chat
-        )
+            : chat,
+        ),
       );
     };
-  
+
     if (isNewChat) {
-      const newTitle = tags[0] || 'New Chat'; // Use the first tag or fallback to 'New Chat'
-      setChatTitle(newTitle); // Set the new chat title
+      const newTitle = tags || ['New Chat']; // Use the first tag or fallback to 'New Chat'
+      setChatTitle(newTitle.join(', ')); // Set the new chat title
       updateChatTitle(newTitle); // Update the chats array with the new title
+      // Update the selected chat
+      setSelectedChat((prevChat) => ({
+        chatId: prevChat.chatId,
+        name: tags || ['User'], // Use updated chatTitle or fallback
+        messages: [...prevChat.messages, message], // Add the new message
+      }));
     } else {
       // If not a new chat, just update the existing chat with the new message
       setChats((prevChats) =>
         prevChats.map((chat) =>
           chat.chatId === selectedChat.chatId
             ? { ...chat, messages: [...chat.messages, message] } // Add new message to existing chat
-            : chat
-        )
+            : chat,
+        ),
       );
+      // Update the selected chat
+      setSelectedChat((prevChat) => ({
+        chatId: prevChat.chatId,
+        name: chatTitle.split(', ') || ['User'], // Use updated chatTitle or fallback
+        messages: [...prevChat.messages, message], // Add the new message
+      }));
     }
-  
-    // Update the selected chat
-    setSelectedChat((prevChat) => ({
-      chatId: prevChat.chatId,
-      name: chatTitle || 'hello', // Use updated chatTitle or fallback
-      messages: [...prevChat.messages, message], // Add the new message
-    }));
-  
+
     // Reset state for new chat and tags
     setIsNewChat(false);
     setTags([]);
   };
-  
 
   const selectChat = (chat) => {
-    setChatTitle(chat.name);
+    setChatTitle(chat.name.join(', '));
     setSelectedChat(chat);
 
     if (isNewChat) {
@@ -134,7 +145,7 @@ const Chat = () => {
   const addChat = () => {
     let newChat = {
       chatId: chats.length,
-      name: '',
+      name: [],
       messages: [],
     };
     setIsNewChat(true);
@@ -194,13 +205,13 @@ const Chat = () => {
             />
 
             {/* Messages List */}
-            <MessageList 
-              selectedChat={selectedChat} 
-              userId={userId} 
+            <MessageList
+              selectedChat={selectedChat}
+              userId={userId}
               deleteMessage={deleteMessage}
               messagesEndRef={messagesEndRef}
               lastMessageDate={lastMessageDate}
-              />
+            />
 
             {/* Message Input */}
             <Box sx={{ padding: '10px' }}>

@@ -15,7 +15,6 @@ const MessageList = ({selectedChat, userId, deleteMessage, messagesEndRef, lastM
       >
         {selectedChat.messages.map((message, index) => {
           const messageDate = message.timestamp.toDateString();
-
           const showDate = lastMessageDate !== messageDate;
           lastMessageDate = messageDate; // Update for the next message
           return (
@@ -34,7 +33,6 @@ const MessageList = ({selectedChat, userId, deleteMessage, messagesEndRef, lastM
                 </Typography>
               )}
               <Message
-                chatTitle={selectedChat?.name}
                 currentUserId={userId}
                 message={message}
                 key={index}

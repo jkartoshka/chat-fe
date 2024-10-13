@@ -59,12 +59,12 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
       position="static"
       color="inherit"
       elevation={0}
-      sx={{ borderBottom: '1px solid #ddd' }}
+      className="chat-header-container"
     >
       <Toolbar>
         {/* Avatar and Chat Title */}
         <Box display="flex" alignItems="center" flexGrow={1}>
-        {!isNewChat && <UserAvatar chatTitle={chatTitle} />}
+        {!isNewChat && <UserAvatar isGroupChat={chat.name.length > 1} chatTitle={chatTitle} />}
               <Box ml={2} sx={{ width: '100%' }}>
             {isNewChat ? (
               <>
