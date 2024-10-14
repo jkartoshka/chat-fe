@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatList.css';
-import '../global.css';
+import '../../global.css';
 
 const ChatList = ({
   chats,

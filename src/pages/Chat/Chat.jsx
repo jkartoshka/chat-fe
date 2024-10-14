@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { useEffect, useRef, useState } from 'react';
-import ChatHeader from '../ChatHeader/ChatHeader';
-import ChatList from '../ChatList/ChatList';
-import MessageInputBox from '../MessageInputBox/MessageInputBox';
-import MessageList from '../MessageList/MessageList';
+import ChatHeader from '../../components/ChatHeader/ChatHeader';
+import ChatList from '../../components/ChatList/ChatList';
+import MessageInputBox from '../../components/MessageInputBox/MessageInputBox';
+import MessageList from '../../components/MessageList/MessageList';
 import './Chat.css';
 
 const Chat = () => {

@@ -18,7 +18,7 @@ import {
 import React, { useState } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatHeader.css';
-import '../global.css'
+import '../../global.css'
 
 const ChatHeader = ({
   chat,
