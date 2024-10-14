@@ -1,32 +1,31 @@
 # Chat Frontend Application
 
-This is a frontend-only chat application built using React and Material UI (MUI). The application simulates a real-time messaging interface with features such as chat list management, user avatars, timestamp display, and message input.
+This is a frontend-only chat application built using React and Material UI (MUI). The application simulates a real-time messaging interface with features such as chat list management and basic chat functionality.
 
 ## Tech Stack
 
-React: Core framework used for building the UI.
-Material UI (MUI): UI component library used for styling and responsive design.
-MUI Grid v2: For responsive, mobile-friendly layouts.
-React Hooks: Used for state management and side effects.
-JavaScript (ES6): The main language used for logic and functionality.
+React, JavaScript (ES6), and Material UI (MUI)
 
 ## Installation
 
 To run the project locally, follow these steps:
 
+Make sure you have Node.js installed
+
 Clone the repository:
 
 `git clone https://github.com/jkartoshka/chat-fe.git`
+
 `cd chat-frontend`
 
-Install dependencies: Make sure you have Node.js installed, then run:
-`npm install`
+run: `npm install`
 
 Run the development server:
 `npm start`
+
 The app will be available at http://localhost:3000.
 
-## Usage
+## Features
 
 ### Existing Chats
 
