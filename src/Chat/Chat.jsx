@@ -168,7 +168,7 @@ const Chat = () => {
       {/* Chat list on the left */}
       <Grid
         item
-        size={3}
+        size={{xs: 12, sm: 4, md: 3}}
         className="chat-list"
       >
         <ChatList
@@ -184,7 +184,7 @@ const Chat = () => {
       {/* Chat window on the right */}
       <Grid
         item
-        size={9}
+        size={{xs: 12, sm: 8, md: 9}}
         className="chat-window"
       >
         {selectedChat && (
