@@ -2,19 +2,28 @@ import { Stack, Typography } from '@mui/material';
 import Message from '../Message/Message';
 import './MessageList.css'
 
-const MessageList = ({selectedChat, userId, deleteMessage, messagesEndRef, lastMessageDate}) => {
+const MessageList = ({
+  selectedChat,    // The currently selected chat, containing messages
+  userId,          // The ID of the current user (to identify message ownership)
+  deleteMessage,   // Function to delete a message
+  messagesEndRef,  // Reference to the last message for scrolling
+  lastMessageDate, // Tracks the last message's date to display date separators
+}) => {
     return (
     <Stack
-        direction="column"
-        spacing={2}
+        direction="column"      // Messages stacked vertically
+        spacing={2}             // Spacing between messages
         className="message-list"
       >
+        {/* Loop through the messages of a selected chat */}
         {selectedChat.messages.map((message, index) => {
+          // Logic for showing date separator
           const messageDate = message.timestamp.toDateString();
           const showDate = lastMessageDate !== messageDate;
-          lastMessageDate = messageDate; // Update for the next message
+          lastMessageDate = messageDate;
           return (
             <div>
+              {/* Date separator */}
               {showDate && (
                 <Typography
                   variant="body2"
@@ -28,13 +37,15 @@ const MessageList = ({selectedChat, userId, deleteMessage, messagesEndRef, lastM
                   })}
                 </Typography>
               )}
+
+              {/* Render message */}
               <Message
                 currentUserId={userId}
                 message={message}
                 key={index}
                 deleteMessage={deleteMessage}
               />
-              {/* This div will act as the scroll target */}
+              {/* div as the scroll target */}
               <div ref={messagesEndRef} />
             </div>
           );

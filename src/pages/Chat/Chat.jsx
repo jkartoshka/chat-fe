@@ -9,6 +9,8 @@ import './Chat.css';
 
 const Chat = () => {
   const userId = 123; // This could be dynamically set after login
+
+  // Chats & Messages mock data
   const [chats, setChats] = useState([
     { chatId: 0, name: ['You'], messages: [] },
     {
@@ -51,16 +53,26 @@ const Chat = () => {
       ],
     },
   ]);
+
+  // State variable to manage the selected chat
   const [selectedChat, setSelectedChat] = useState({
     chatId: 0,
     name: ['You'],
     messages: [],
   });
-  const [tags, setTags] = useState([]); // Tags from header
+
+  // State variable to manage if chat is a new chat
   const [isNewChat, setIsNewChat] = useState(false);
+
+  // State variable to manage tags list in header
+  const [tags, setTags] = useState([]);
+
+  // State variable to manage chat title in header
   const [chatTitle, setChatTitle] = useState('You'); // Chat title from header
 
+  // Function for deleting a chat object
   const deleteChat = (deleteChat) => {
+    // Removes chat by Id
     const updatedChats = chats.filter(
       (chat) => chat.chatId !== deleteChat.chatId,
     );
@@ -76,7 +88,9 @@ const Chat = () => {
     setChatTitle(nextChat.name.join(', '));
   };
 
+  // Function to delete a message
   const deleteMessage = (message) => {
+    // If it is the current user's message, then remove message from message list
     if (message.userId === userId) {
       setSelectedChat({
         chatId: selectedChat.chatId,
@@ -88,6 +102,7 @@ const Chat = () => {
     }
   };
 
+  // Function to add a message
   const addMessage = (message) => {
     // Helper function to update the chat title in the chats array
     const updateChatTitle = (newTitle) => {
@@ -101,14 +116,14 @@ const Chat = () => {
     };
 
     if (isNewChat) {
-      const newTitle = tags || ['New Chat']; // Use the first tag or fallback to 'New Chat'
-      setChatTitle(newTitle.join(', ')); // Set the new chat title
-      updateChatTitle(newTitle); // Update the chats array with the new title
+      const newTitle = tags || ['New Chat'];        // Use the first tag or fallback to 'New Chat'
+      setChatTitle(newTitle.join(', '));            // Set the new chat title
+      updateChatTitle(newTitle);                    // Update the chats array with the new title
       // Update the selected chat
       setSelectedChat((prevChat) => ({
         chatId: prevChat.chatId,
-        name: tags || ['User'], // Use updated chatTitle or fallback
-        messages: [...prevChat.messages, message], // Add the new message
+        name: tags || ['User'],                     // Use updated chatTitle or fallback
+        messages: [...prevChat.messages, message],  // Add the new message
       }));
     } else {
       // If not a new chat, just update the existing chat with the new message
@@ -132,17 +147,21 @@ const Chat = () => {
     setTags([]);
   };
 
+  // Function for selecting a current chat
   const selectChat = (chat) => {
+    // Update Chat Title & selected Chat state variables
     setChatTitle(chat.name.join(', '));
     setSelectedChat(chat);
 
     if (isNewChat) {
+      // If in new chat and user select different chat, remove new uncreated chat
       setIsNewChat(false);
       const updatedChats = chats.slice(0, chats.length - 1);
       setChats(updatedChats);
     }
   };
 
+  // Function for adding a chat
   const addChat = () => {
     let newChat = {
       chatId: chats.length,
@@ -153,6 +172,7 @@ const Chat = () => {
     setChats([...chats, newChat]);
     setSelectedChat(newChat);
   };
+  
   let lastMessageDate = null;
   const messagesEndRef = useRef(null); // Create a ref for scrolling
 
@@ -166,11 +186,7 @@ const Chat = () => {
   return (
     <Grid container className="chat-container">
       {/* Chat list on the left */}
-      <Grid
-        item
-        size={{xs: 12, sm: 4, md: 3}}
-        className="chat-list"
-      >
+      <Grid item size={{ xs: 12, sm: 4, md: 3 }} className="chat-list">
         <ChatList
           addChat={addChat}
           isNewChat={isNewChat}
@@ -182,11 +198,7 @@ const Chat = () => {
       </Grid>
 
       {/* Chat window on the right */}
-      <Grid
-        item
-        size={{xs: 12, sm: 8, md: 9}}
-        className="chat-window"
-      >
+      <Grid item size={{ xs: 12, sm: 8, md: 9 }} className="chat-window">
         {selectedChat && (
           <Box className="chat-window">
             {/* Chat Header */}

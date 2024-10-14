@@ -2,6 +2,7 @@ import Avatar from '@mui/material/Avatar';
 import * as React from 'react';
 import GroupsIcon from '@mui/icons-material/Groups';
 
+// Function for determining color of avatar based on name hash
 function stringToColor(string) {
   let hash = 0;
   let i;
@@ -27,6 +28,7 @@ function stringToColor(string) {
   return color;
 }
 
+// Avatar Props
 function stringAvatar(name, isGroupChat) {
   return {
     sx: {
