@@ -8,7 +8,7 @@ import {
   ListItemText,
   Toolbar,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import React from 'react';
 import '../../global.css';
@@ -16,20 +16,20 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatList.css';
 
 const ChatList = ({
-  chats,        // Chats array object
-  userId,       // Current user Id
+  chats, // Chats array object
+  userId, // Current user Id
   onChatSelect, // Function for selecting a chat
   selectedChat, // Current selected chat object
-  addChat,      // Function to add a new chat
-  isNewChat,    // Boolean to indicate if it's a new chat 
+  addChat, // Function to add a new chat
+  isNewChat, // Boolean to indicate if it's a new chat
 }) => {
   return (
     <>
       {/* Chat List Header */}
       <AppBar
-        elevation={0}         // Remove shadow
-        position="static"     // Position chat list header at the top
-        color="default"       // Use defuult color
+        elevation={0} // Remove shadow
+        position="static" // Position chat list header at the top
+        color="default" // Use defuult color
         className="chat-list"
       >
         <Toolbar className="chat-toolbar">

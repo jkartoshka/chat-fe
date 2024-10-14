@@ -1,24 +1,24 @@
 .chat-header {
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .chat-chip-container {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .chat-chip {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .chat-new-title {
-    width: 100%;
+  width: 100%;
 }
 
 .new-chat-text-field {
-    padding-left: 10px;
-    padding-right: 3px;
+  padding-left: 10px;
+  padding-right: 3px;
 }
 
 .MuiInput-root::before {
-    border-bottom: 0!important;
+  border-bottom: 0 !important;
 }

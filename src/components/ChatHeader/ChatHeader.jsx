@@ -13,7 +13,7 @@ import {
   MenuItem,
   TextField,
   Toolbar,
-  Typography
+  Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
 import '../../global.css';
@@ -21,12 +21,12 @@ import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatHeader.css';
 
 const ChatHeader = ({
-  chat,       // Current chat object
-  chatTitle,  // Name of the chat
-  isNewChat,  // Boolean to indicate if it's a new chat
-  tags,       // List of participants of a new chat
-  setTags,    // Function to update tags array
-  deleteChat, // Function to delete the chat 
+  chat, // Current chat object
+  chatTitle, // Name of the chat
+  isNewChat, // Boolean to indicate if it's a new chat
+  tags, // List of participants of a new chat
+  setTags, // Function to update tags array
+  deleteChat, // Function to delete the chat
 }) => {
   // State variable to manage the input field of a new chat
   const [newChatTitle, setNewChatTitle] = useState('');
@@ -76,9 +76,9 @@ const ChatHeader = ({
 
   return (
     <AppBar
-      position="static"       // Position the chat header at the top
-      color="inherit"         // Inherit color from theme
-      elevation={0}           // Remove shadow
+      position="static" // Position the chat header at the top
+      color="inherit" // Inherit color from theme
+      elevation={0} // Remove shadow
       className="chat-header"
     >
       <Toolbar>
@@ -98,8 +98,7 @@ const ChatHeader = ({
               <>
                 {/* Input for adding participants to a chat */}
                 <Box display="flex" alignItems="center" color="#9e9e9e">
-                  To:{' '}
-                  {/* Display added tags/participants */}
+                  To: {/* Display added tags/participants */}
                   <Box
                     display="flex"
                     alignItems="center"
@@ -118,12 +117,11 @@ const ChatHeader = ({
                       />
                     ))}
                   </Box>
-                  
                   {/* Input field for adding new participant name */}
                   <TextField
-                    value={newChatTitle}          // Bind input value to state
-                    onChange={handleInputChange}  // Update state on change
-                    onKeyPress={handleKeyPress}   // Handle "Enter" key to add participant
+                    value={newChatTitle} // Bind input value to state
+                    onChange={handleInputChange} // Update state on change
+                    onKeyPress={handleKeyPress} // Handle "Enter" key to add participant
                     autoFocus
                     className="username-container new-chat-text-field"
                     variant="standard"
@@ -161,11 +159,7 @@ const ChatHeader = ({
                   <MoreHorizIcon />
                 </IconButton>
               </Box>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-              >
+              <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                 {/* Menu item to delete chat */}
                 <MenuItem onClick={deleteCht}>
                   <ListItemIcon>

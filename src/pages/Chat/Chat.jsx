@@ -116,14 +116,14 @@ const Chat = () => {
     };
 
     if (isNewChat) {
-      const newTitle = tags || ['New Chat'];        // Use the first tag or fallback to 'New Chat'
-      setChatTitle(newTitle.join(', '));            // Set the new chat title
-      updateChatTitle(newTitle);                    // Update the chats array with the new title
+      const newTitle = tags || ['New Chat']; // Use the first tag or fallback to 'New Chat'
+      setChatTitle(newTitle.join(', ')); // Set the new chat title
+      updateChatTitle(newTitle); // Update the chats array with the new title
       // Update the selected chat
       setSelectedChat((prevChat) => ({
         chatId: prevChat.chatId,
-        name: tags || ['User'],                     // Use updated chatTitle or fallback
-        messages: [...prevChat.messages, message],  // Add the new message
+        name: tags || ['User'], // Use updated chatTitle or fallback
+        messages: [...prevChat.messages, message], // Add the new message
       }));
     } else {
       // If not a new chat, just update the existing chat with the new message
@@ -172,7 +172,7 @@ const Chat = () => {
     setChats([...chats, newChat]);
     setSelectedChat(newChat);
   };
-  
+
   let lastMessageDate = null;
   const messagesEndRef = useRef(null); // Create a ref for scrolling
 

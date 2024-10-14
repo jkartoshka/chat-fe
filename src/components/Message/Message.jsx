@@ -5,26 +5,25 @@ import {
   Menu,
   MenuItem,
   Paper,
-  Typography
+  Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import './Message.css';
 
-const Message = (
-  { 
-    currentUserId,  // Current User Id
-    message,        // Current Message Object
-    deleteMessage   // Function for deleting a message
-  }) => {
-    // Boolean for determining whether the message is sent from the current user
+const Message = ({
+  currentUserId, // Current User Id
+  message, // Current Message Object
+  deleteMessage, // Function for deleting a message
+}) => {
+  // Boolean for determining whether the message is sent from the current user
   const isMyMessage = message.userId === currentUserId;
 
   // State & variables for handling the dropdown menu of a chat
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-    // Handles menu opening for additional chat options
+  // Handles menu opening for additional chat options
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -46,7 +45,7 @@ const Message = (
         className="message-container"
         sx={{
           // Align messages based on ownership
-          justifyContent: isMyMessage ? 'flex-end' : 'flex-start'
+          justifyContent: isMyMessage ? 'flex-end' : 'flex-start',
         }}
       >
         {/* Message Avatar */}
@@ -58,15 +57,14 @@ const Message = (
         <Paper
           sx={{
             // Changes background color based on  ownership
-            backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1'
+            backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1',
           }}
           className="message"
           // Removes shadow
           elevation={0}
-          // Opens menu on click 
+          // Opens menu on click
           onClick={handleClick}
         >
-
           {/* Message Text */}
           <Typography
             variant="body1"
@@ -89,18 +87,14 @@ const Message = (
                 hour: '2-digit',
                 minute: '2-digit',
               })
-              .replace(/^0+/, '')} 
+              .replace(/^0+/, '')}
           </Typography>
         </Paper>
       </Box>
 
       {/* Menu for deleting a chat */}
       {isMyMessage && (
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-        >
+        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
           {/* Menu item to delete chat */}
           <MenuItem onClick={deleteMsg}>
             <ListItemIcon>

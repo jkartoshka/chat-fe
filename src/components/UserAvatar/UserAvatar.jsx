@@ -34,7 +34,12 @@ function stringAvatar(name, isGroupChat) {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: name == '' ? null : isGroupChat ? <GroupsIcon /> :`${name?.split('')[0]?.[0]}`,
+    children:
+      name == '' ? null : isGroupChat ? (
+        <GroupsIcon />
+      ) : (
+        `${name?.split('')[0]?.[0]}`
+      ),
   };
 }
 
