@@ -1,0 +1,21 @@
+.message-container {
+  display: flex;
+  margin: 10px 0;
+}
+
+.message-avatar {
+  padding-right: 10px;
+}
+
+.message {
+  padding: 10px;
+  max-width: 70%;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+.message-timestamp {
+  text-align: right;
+  display: block;
+  margin-top: 5px;
+}

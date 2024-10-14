@@ -1,0 +1,25 @@
+.chat-list {
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-toolbar {
+    padding-right: 10px !important;
+}
+
+.chat-avatar {
+    min-width: 40px;
+    max-width: 40px;
+}
+
+.chat-timestamp {
+    font-size: 0.8rem;
+    color: #6e6e6e;
+    white-space: nowrap;
+}
+
+.chat-last-message {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}

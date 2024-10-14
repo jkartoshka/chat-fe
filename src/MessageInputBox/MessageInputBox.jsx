@@ -33,10 +33,10 @@ const MessageInputBox = ({ addMessage, userId, isNewChat, tags }) => {
   };
 
   return (
-    <div className="message-input-container">
+    <div className="message-input">
       <TextField
         id="message-input"
-        className="message-input-container"
+        className="message-input"
         onChange={(e) => {
           setMessage(e.target.value);
         }}

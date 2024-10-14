@@ -2,24 +2,32 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {
-    AppBar,
-    Box,
-    Chip,
-    IconButton,
-    InputAdornment,
-    ListItemIcon,
-    ListItemText,
-    Menu,
-    MenuItem,
-    TextField,
-    Toolbar,
-    Typography
+  AppBar,
+  Box,
+  Chip,
+  IconButton,
+  InputAdornment,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
+  TextField,
+  Toolbar,
+  Typography
 } from '@mui/material';
 import React, { useState } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatHeader.css';
+import '../global.css'
 
-const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) => {
+const ChatHeader = ({
+  chat,
+  chatTitle,
+  isNewChat,
+  tags,
+  setTags,
+  deleteChat,
+}) => {
   const [newChatTitle, setNewChatTitle] = useState('');
   const handleInputChange = (event) => {
     setNewChatTitle(event.target.value);
@@ -59,13 +67,18 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
       position="static"
       color="inherit"
       elevation={0}
-      className="chat-header-container"
+      className="chat-header"
     >
       <Toolbar>
         {/* Avatar and Chat Title */}
         <Box display="flex" alignItems="center" flexGrow={1}>
-        {!isNewChat && <UserAvatar isGroupChat={chat.name.length > 1} chatTitle={chatTitle} />}
-              <Box ml={2} sx={{ width: '100%' }}>
+          {!isNewChat && (
+            <UserAvatar
+              isGroupChat={chat.name.length > 1}
+              chatTitle={chatTitle}
+            />
+          )}
+          <Box ml={2} className="chat-new-title">
             {isNewChat ? (
               <>
                 <Box display="flex" alignItems="center" color="#9e9e9e">
@@ -73,13 +86,13 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
                   <Box
                     display="flex"
                     alignItems="center"
-                    sx={{ marginLeft: '10px' }}
+                    className="chat-chip-container"
                   >
                     {tags.map((tag, index) => (
                       <Chip
                         key={index}
                         label={tag}
-                        sx={{ marginRight: '5px' }}
+                        className="chat-chip"
                         onDelete={() => {
                           // Remove the tag on delete
                           setTags(tags.filter((_, i) => i !== index));
@@ -92,7 +105,7 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
                     onChange={handleInputChange}
                     onKeyPress={handleKeyPress}
                     autoFocus
-                    sx={{ width: '100%', paddingLeft: '10px', paddingTop: '3px' }}
+                    className="username-container new-chat-text-field"
                     variant="standard"
                     placeholder="Enter name"
                     InputProps={{
@@ -112,7 +125,7 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
                 </Box>
               </>
             ) : (
-              <Typography sx={{ fontWeight: 'bold' }} variant="h6">
+              <Typography className="chat-title" variant="h6">
                 {chatTitle}
               </Typography>
             )}
@@ -125,13 +138,9 @@ const ChatHeader = ({ chat, chatTitle, isNewChat, tags, setTags, deleteChat }) =
                 </IconButton>
               </Box>
               <Menu
-                id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
               >
                 <MenuItem onClick={deleteCht}>
                   <ListItemIcon>

@@ -12,6 +12,8 @@ import {
 } from '@mui/material';
 import React from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
+import './ChatList.css';
+import '../global.css';
 
 const ChatList = ({
   chats,
@@ -27,11 +29,11 @@ const ChatList = ({
         elevation={0}
         position="static"
         color="default"
-        sx={{ borderBottom: '1px solid #ddd' }}
+        className="chat-list"
       >
-        <Toolbar sx={{ paddingRight: '10px !important' }}>
+        <Toolbar className="chat-toolbar">
           <Box display="flex" alignItems="center" flexGrow={1}>
-            <Typography sx={{ fontWeight: 'bold' }} variant="h6">
+            <Typography className="chat-title" variant="h6">
               Chat
             </Typography>
           </Box>
@@ -53,8 +55,13 @@ const ChatList = ({
             >
               <Box display="flex" alignItems="center" width="100%">
                 {/* Avatar */}
-                <Box sx={{ minWidth: '40px', maxWidth: '40px' }}>
-                   {chat.name && <UserAvatar isGroupChat={chat.name.length > 1} chatTitle={chat?.name.join(', ')} />}
+                <Box className="chat-avatar">
+                  {chat.name && (
+                    <UserAvatar
+                      isGroupChat={chat.name.length > 1}
+                      chatTitle={chat?.name.join(', ')}
+                    />
+                  )}
                 </Box>
 
                 {/* Chat Name and Last Message */}
@@ -75,18 +82,14 @@ const ChatList = ({
                             textOverflow: 'ellipsis',
                           }}
                         >
-                          {chat.name.length !== 0 ? chat.name.join(', '): 'New Chat'}
+                          {chat.name.length !== 0
+                            ? chat.name.join(', ')
+                            : 'New Chat'}
                         </span>
 
                         {/* Timestamp */}
                         {chat.name && lastMessage && (
-                          <Box
-                            sx={{
-                              fontSize: '0.8rem',
-                              color: '#6e6e6e',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
+                          <Box className="chat-timestamp">
                             {new Date(lastMessage?.timestamp).toDateString() ===
                             new Date().toDateString()
                               ? new Date(lastMessage?.timestamp)
@@ -101,14 +104,7 @@ const ChatList = ({
                       </Box>
                     }
                     secondary={
-                      <Box
-                        sx={{
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          maxWidth: '100%',
-                        }}
-                      >
+                      <Box className="chat-last-message">
                         {lastMessage?.userId === userId
                           ? `You: ${lastMessage?.text}`
                           : lastMessage?.text}

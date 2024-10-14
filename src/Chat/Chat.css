@@ -1,0 +1,19 @@
+.chat-container {
+    height: 100vh;
+}
+
+.chat-list {
+    background-color: #f5f5f5;
+    border-right: 1px solid #ddd;
+    overflow-y: auto
+}
+
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.chat-message-input {
+    padding: 10px;
+}

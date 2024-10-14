@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import UserAvatar from '../UserAvatar/UserAvatar';
+import './Message.css'
 
 const Message = ({ currentUserId, message, deleteMessage }) => {
   const isMyMessage = message.userId === currentUserId;
@@ -29,23 +30,18 @@ const Message = ({ currentUserId, message, deleteMessage }) => {
   return (
     <>
       <Box
+        className="message-container"
         sx={{
-          display: 'flex',
-          justifyContent: isMyMessage ? 'flex-end' : 'flex-start', // Align messages based on ownership
-          margin: '10px 0',
+          // Align messages based on ownership
+          justifyContent: isMyMessage ? 'flex-end' : 'flex-start'
         }}
       >
-        <Box sx={{ paddingRight: '10px' }}>
+        <Box className="message-avatar">
           {!isMyMessage && <UserAvatar chatTitle={message.userName} />}
         </Box>
         <Paper
-          sx={{
-            padding: '10px',
-            maxWidth: '70%',
-            backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1',
-            borderRadius: '10px',
-            wordWrap: 'break-word',
-          }}
+          sx={{backgroundColor: isMyMessage ? '#1976d2' : '#f1f1f1'}}
+          className="message"
           elevation={0}
           onClick={handleClick}
         >
@@ -57,10 +53,8 @@ const Message = ({ currentUserId, message, deleteMessage }) => {
           </Typography>
           <Typography
             variant="caption"
+            className="message-timestamp"
             sx={{
-              textAlign: 'right',
-              display: 'block',
-              marginTop: '5px',
               color: isMyMessage ? 'white' : 'black',
             }}
           >
@@ -75,13 +69,9 @@ const Message = ({ currentUserId, message, deleteMessage }) => {
       </Box>
       {isMyMessage && (
         <Menu
-          id="basic-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          MenuListProps={{
-            'aria-labelledby': 'basic-button',
-          }}
         >
           <MenuItem onClick={deleteMsg}>
             <ListItemIcon>

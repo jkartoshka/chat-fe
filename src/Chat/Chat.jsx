@@ -5,6 +5,7 @@ import ChatHeader from '../ChatHeader/ChatHeader';
 import ChatList from '../ChatList/ChatList';
 import MessageInputBox from '../MessageInputBox/MessageInputBox';
 import MessageList from '../MessageList/MessageList';
+import './Chat.css';
 
 const Chat = () => {
   const userId = 123; // This could be dynamically set after login
@@ -163,16 +164,12 @@ const Chat = () => {
   }, [selectedChat?.messages]); // Listen to changes in messages array
 
   return (
-    <Grid container sx={{ height: '100vh' }}>
+    <Grid container className="chat-container">
       {/* Chat list on the left */}
       <Grid
         item
         size={3}
-        sx={{
-          backgroundColor: '#f5f5f5',
-          borderRight: '1px solid #ddd',
-          overflowY: 'auto',
-        }}
+        className="chat-list"
       >
         <ChatList
           addChat={addChat}
@@ -188,12 +185,10 @@ const Chat = () => {
       <Grid
         item
         size={9}
-        sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
+        className="chat-window"
       >
         {selectedChat && (
-          <Box
-            sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
-          >
+          <Box className="chat-window">
             {/* Chat Header */}
             <ChatHeader
               chat={selectedChat}
@@ -214,7 +209,7 @@ const Chat = () => {
             />
 
             {/* Message Input */}
-            <Box sx={{ padding: '10px' }}>
+            <Box className="chat-message-input">
               <MessageInputBox
                 addMessage={addMessage}
                 userId={userId}

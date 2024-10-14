@@ -1,17 +1,13 @@
 import { Stack, Typography } from '@mui/material';
 import Message from '../Message/Message';
+import './MessageList.css'
 
 const MessageList = ({selectedChat, userId, deleteMessage, messagesEndRef, lastMessageDate}) => {
     return (
     <Stack
         direction="column"
         spacing={2}
-        sx={{
-          flexGrow: 1,
-          overflowY: 'auto',
-          padding: '16px',
-          justifyContent: 'flex-start',
-        }}
+        className="message-list"
       >
         {selectedChat.messages.map((message, index) => {
           const messageDate = message.timestamp.toDateString();
