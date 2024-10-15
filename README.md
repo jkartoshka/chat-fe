@@ -45,3 +45,7 @@ Once you send a message the chat will be created.
 
 Add multiple participants in a new chat to create a group conversation.
 Group participants are displayed with their avatars and names.
+
+## Deleting a Chat
+
+To delete a chat Click the three dots in a chat, and menu will appear. Click Delete and the chat will be removed
