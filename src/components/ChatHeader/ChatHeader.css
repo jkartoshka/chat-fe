@@ -15,8 +15,8 @@
 }
 
 .new-chat-text-field {
-  padding-left: 10px;
-  padding-right: 3px;
+  padding-left: 10px !important;
+  padding-right: 3px !important;
 }
 
 .MuiInput-root::before {

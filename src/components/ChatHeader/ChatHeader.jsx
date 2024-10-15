@@ -123,7 +123,7 @@ const ChatHeader = ({
                     onChange={handleInputChange} // Update state on change
                     onKeyPress={handleKeyPress} // Handle "Enter" key to add participant
                     autoFocus
-                    className="username-container new-chat-text-field"
+                    className="chat-new-title new-chat-text-field"
                     variant="standard"
                     placeholder="Enter name"
                     InputProps={{

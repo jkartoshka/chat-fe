@@ -1,16 +1,17 @@
 import SendIcon from '@mui/icons-material/Send';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './MessageInputBox.css';
 
 const MessageInputBox = ({
+  message, 
+  setMessage, 
   addMessage, // Function for adding a message
   userId, // Current user Id
   isNewChat, // Boolean to indicate if it's a new chat
   tags, // List of participants of a new chat
 }) => {
-  const [message, setMessage] = useState('');
+ 
 
   const handleSendMessage = () => {
     const newMessage = {

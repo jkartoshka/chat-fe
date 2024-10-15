@@ -61,6 +61,9 @@ const Chat = () => {
     messages: [],
   });
 
+  // State variable to manage message text
+  const [message, setMessage] = useState('');
+
   // State variable to manage if chat is a new chat
   const [isNewChat, setIsNewChat] = useState(false);
 
@@ -85,7 +88,7 @@ const Chat = () => {
       null;
 
     setSelectedChat(nextChat);
-    setChatTitle(nextChat.name.join(', '));
+    setChatTitle(nextChat.name?.join(', '));
   };
 
   // Function to delete a message
@@ -152,6 +155,7 @@ const Chat = () => {
     // Update Chat Title & selected Chat state variables
     setChatTitle(chat.name.join(', '));
     setSelectedChat(chat);
+    setMessage('');
 
     if (isNewChat) {
       // If in new chat and user select different chat, remove new uncreated chat
@@ -223,6 +227,8 @@ const Chat = () => {
             {/* Message Input */}
             <Box className="chat-message-input">
               <MessageInputBox
+                message={message}
+                setMessage={setMessage}
                 addMessage={addMessage}
                 userId={userId}
                 isNewChat={isNewChat}
