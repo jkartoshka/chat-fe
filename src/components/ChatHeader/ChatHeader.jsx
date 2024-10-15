@@ -15,7 +15,7 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../global.css';
 import UserAvatar from '../UserAvatar/UserAvatar';
 import './ChatHeader.css';
@@ -74,6 +74,15 @@ const ChatHeader = ({
     handleClose();
   };
 
+  const tagsContainerRef = useRef(null); // Create a ref for scrolling
+
+   // Scroll to the end of the tag list when tags are updated
+   useEffect(() => {
+    if (tagsContainerRef.current) {
+      tagsContainerRef.current.scrollLeft = tagsContainerRef.current.scrollWidth;
+    }
+  }, [tags]);
+
   return (
     <AppBar
       position="static" // Position the chat header at the top
@@ -103,6 +112,7 @@ const ChatHeader = ({
                     display="flex"
                     alignItems="center"
                     className="chat-chip-container"
+                    ref={tagsContainerRef}
                   >
                     {tags.map((tag, index) => (
                       <Chip
@@ -149,9 +159,9 @@ const ChatHeader = ({
               <Typography className="chat-title" variant="h6">
                 {chatTitle}
               </Typography>
-            )}
-          </Box>
+            )}   
 
+          </Box>
           {/* Menu for deleting a chat */}
           {!isNewChat && chat.chatId !== 0 && (
             <>
@@ -172,7 +182,7 @@ const ChatHeader = ({
             </>
           )}
         </Box>
-      </Toolbar>
+      </Toolbar> 
     </AppBar>
   );
 };

@@ -1,14 +1,14 @@
-.chat-list {
-  border-bottom: 1px solid #ddd;
+.chat-list-header {
+  border-bottom: 0.0625rem solid #ddd;
 }
 
 .chat-toolbar {
-  padding-right: 10px !important;
+  padding-right: 0.5rem !important;
 }
 
 .chat-avatar {
-  min-width: 40px;
-  max-width: 40px;
+  min-width: 2.5rem;
+  max-width: 2.5rem;
 }
 
 .chat-timestamp {

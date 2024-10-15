@@ -30,7 +30,7 @@ const ChatList = ({
         elevation={0} // Remove shadow
         position="static" // Position chat list header at the top
         color="default" // Use defuult color
-        className="chat-list"
+        className="chat-list-header"
       >
         <Toolbar className="chat-toolbar">
           <Box display="flex" alignItems="center" flexGrow={1}>

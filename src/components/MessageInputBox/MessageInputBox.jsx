@@ -52,6 +52,7 @@ const MessageInputBox = ({
         onKeyPress={handleKeyPress} // Handle "Enter" key to add a message
         placeholder="Type a message"
         value={message} // Bind input value to state
+        disabled={isNewChat && tags.length === 0}
         InputProps={{
           // Send Button at end of input field
           endAdornment: (
