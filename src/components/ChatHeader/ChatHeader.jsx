@@ -122,6 +122,7 @@ const ChatHeader = ({
                     value={newChatTitle} // Bind input value to state
                     onChange={handleInputChange} // Update state on change
                     onKeyPress={handleKeyPress} // Handle "Enter" key to add participant
+                    onBlur={handleAddTag}
                     autoFocus
                     className="chat-new-title new-chat-text-field"
                     variant="standard"

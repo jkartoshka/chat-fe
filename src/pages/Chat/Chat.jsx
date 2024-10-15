@@ -162,6 +162,7 @@ const Chat = () => {
       setIsNewChat(false);
       const updatedChats = chats.slice(0, chats.length - 1);
       setChats(updatedChats);
+      setTags([]);
     }
   };
 
