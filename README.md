@@ -16,7 +16,7 @@ Clone the repository:
 
 `git clone https://github.com/jkartoshka/chat-fe.git`
 
-`cd chat-frontend`
+`cd chat-fe`
 
 run: `npm install`
 
