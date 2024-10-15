@@ -4,15 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 import './MessageInputBox.css';
 
 const MessageInputBox = ({
-  message, 
-  setMessage, 
-  addMessage, // Function for adding a message
-  userId, // Current user Id
-  isNewChat, // Boolean to indicate if it's a new chat
-  tags, // List of participants of a new chat
+  message,      // Current Message text
+  setMessage,   // Setting the Message text
+  addMessage,   // Function for adding a message
+  userId,       // Current user Id
+  isNewChat,    // Boolean to indicate if it's a new chat
+  tags,         // List of participants of a new chat
 }) => {
- 
-
   const handleSendMessage = () => {
     const newMessage = {
       userId: userId, // Current User Id
